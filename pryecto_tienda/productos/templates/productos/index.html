@@ -1,20 +1,46 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Lista de Productos</h1>
-    <ul>
-        {% for producto in productos %}
-            <li> {{ producto.nombre}} : {{producto.precio}} : {{producto.categoria.nombre}}</li>
-        {% empty %}  
-            <h2> No hay Productos</h2>
-        {% endfor %}    
-    </ul>
-<a href="/ofertas"> Ir a Ofertas </a>
+    <nav>
+        <a href="{% url 'index' %}"> HOME</a>
+        <a href="{% url 'ofertas:index' %}"> OFERTAS</a>
+    </nav>
+    <div class="container">
+        <table>
+            <thead> 
+                <tr>
+                    <th>NOMBRE</th>
+                    <th>PRECIO</th>
+                    <th>CATEGORIA</th>
+                </tr>
+            </thead>
+
+        
+            <tbody>
+                {% for producto in productos %}
+                    <tr> 
+                        <td>{{ producto.nombre}}</td>
+                        <td>{{producto.precio}}</td>
+                        <td>{{producto.categoria.nombre}}</td>
+                     </tr>
+        </tbody>
+            </table>             
+                <!-- {% empty %}
+                    <h2> No hay Productos</h2>
+                -->
+                {% endfor %}  
+                   
+        
+
+    </div>
     
 </body>
 </html>
